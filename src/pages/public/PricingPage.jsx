@@ -53,7 +53,7 @@ export default function PricingPage() {
     try {
       const { data } = await trialApi.activate();
       if (data.success) {
-        toast.success('Триал активирован! 5 дней бесплатно');
+        toast.success('Триал активирован! 3 дня бесплатно');
         navigate(ROUTES.DASHBOARD);
       }
     } catch (err) {
@@ -83,7 +83,7 @@ export default function PricingPage() {
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Безлимитный трафик и скорость. Без скрытых платежей.
-              Попробуй 5 дней бесплатно.
+              Попробуй 3 дня бесплатно.
             </p>
           </motion.div>
 
@@ -96,7 +96,7 @@ export default function PricingPage() {
           >
             <div className="flex items-center justify-center gap-2 mb-2">
               <Zap className="w-5 h-5 text-yellow-400" />
-              <span className="text-lg font-semibold text-white">5 дней бесплатно</span>
+              <span className="text-lg font-semibold text-white">3 дня бесплатно</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Попробуй VPN без оплаты. Без привязки карты.

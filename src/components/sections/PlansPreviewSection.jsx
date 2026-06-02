@@ -82,7 +82,7 @@ export default function PlansPreviewSection() {
           <Link to={ROUTES.PRICING}>
             <Button className="px-8 py-4 text-lg flex items-center gap-2 mx-auto">
               <Zap className="w-5 h-5" />
-              5 дней бесплатно
+              3 дня бесплатно
             </Button>
           </Link>
           <p className="text-gray-500 text-sm mt-3">Без карты. Активация в Telegram-боте.</p>

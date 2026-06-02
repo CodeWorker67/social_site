@@ -94,7 +94,7 @@ function OverviewTab() {
     try {
       const { data } = await trialApi.activate();
       if (data.success) {
-        toast.success('Триал активирован! 5 дней бесплатно');
+        toast.success('Триал активирован! 3 дня бесплатно');
         // Refresh data
         const { data: newSub } = await userApi.subscription();
         setSub(newSub);
@@ -123,7 +123,7 @@ function OverviewTab() {
           className={`w-full p-5 rounded-2xl bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon text-white font-semibold text-lg flex items-center justify-center gap-3 hover:opacity-90 transition-opacity ${trialLoading ? 'opacity-50' : ''}`}
         >
           <Zap className="w-6 h-6" />
-          {trialLoading ? 'Активируем...' : 'Активировать 5 дней бесплатно'}
+          {trialLoading ? 'Активируем...' : 'Активировать 3 дня бесплатно'}
         </button>
       )}
 

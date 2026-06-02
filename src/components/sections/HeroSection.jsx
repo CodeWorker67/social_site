@@ -57,7 +57,7 @@ export default function HeroSection() {
           >
             <Link to={ROUTES.PRICING}>
               <Button className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center gap-2">
-                Попробовать 5 дней бесплатно
+                Попробовать 3 дня бесплатно
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>

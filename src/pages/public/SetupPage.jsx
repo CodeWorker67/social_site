@@ -192,7 +192,7 @@ export default function SetupPage() {
                 {/* CTA */}
                 <div className="mt-8 p-6 glass-card text-center">
                   <p className="text-gray-400 text-sm mb-4">
-                    Ещё нет подписки? Активируй 5 дней бесплатно в боте!
+                    Ещё нет подписки? Активируй 3 дня бесплатно в боте!
                   </p>
                   <a href={TELEGRAM.BOT_URL} target="_blank" rel="noopener noreferrer">
                     <Button className="px-6 py-3">Открыть бот</Button>
