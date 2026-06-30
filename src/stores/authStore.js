@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { authApi, AUTH_TOKEN_STORAGE_KEY } from '@services/api';
+import { clearStoredStamp, getStoredStamp } from '@utils/stamp';
 
 const useAuthStore = create((set, get) => ({
   user: null,
@@ -82,11 +83,17 @@ const useAuthStore = create((set, get) => ({
   emailRegister: async (email, password) => {
     set({ isLoading: true });
     try {
-      const { data } = await authApi.register({ email, password });
+      const stamp = getStoredStamp();
+      const { data } = await authApi.register({
+        email,
+        password,
+        ...(stamp && { stamp }),
+      });
       set({ isLoading: false });
       if (data.requires_verification) {
         return { success: true, requiresVerification: true, email: data.email };
       }
+      clearStoredStamp();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
@@ -115,6 +122,7 @@ const useAuthStore = create((set, get) => ({
     try {
       const { data } = await authApi.verifyEmail({ email, code });
       get()._setAuth(data.user, data.token);
+      clearStoredStamp();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
@@ -125,8 +133,13 @@ const useAuthStore = create((set, get) => ({
   googleLogin: async (credential) => {
     set({ isLoading: true });
     try {
-      const { data } = await authApi.googleLogin({ credential });
+      const stamp = getStoredStamp();
+      const { data } = await authApi.googleLogin({
+        credential,
+        ...(stamp && { stamp }),
+      });
       get()._setAuth(data.user, data.token);
+      clearStoredStamp();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
