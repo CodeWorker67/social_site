@@ -13,6 +13,7 @@ export const ROUTES = {
   SUCCESS: '/success',
   PRIVACY_POLICY: '/privacy',
   TERMS: '/terms',
+  GIFT: '/gift',
 };
 
 export const BRAND_NAME = 'Ускоритель Соцсетей';

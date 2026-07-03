@@ -35,7 +35,7 @@ api.interceptors.response.use(
       localStorage.removeItem('zoomer_user');
       localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
       const path = window.location.pathname;
-      if (!path.includes('/login') && !path.includes('/auth/bot')) {
+      if (!path.includes('/login') && !path.includes('/auth/bot') && !path.includes('/gift')) {
         window.location.href = '/login?reason=session_expired';
       }
     }
@@ -89,6 +89,7 @@ export const configApi = {
 // Gifts
 export const giftApi = {
   activate: (giftId) => api.post(`/gifts/${giftId}/activate`),
+  activateWeb: (giftId) => api.post(`/gifts/${giftId}/activate-web`),
 };
 
 export default api;
