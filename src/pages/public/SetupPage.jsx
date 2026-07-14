@@ -14,20 +14,20 @@ const platforms = [
 
 const apps = {
   android: [
-    { id: 'happ', name: 'Happ', url: 'https://play.google.com/store/apps/details?id=com.happ.proxy', recommended: true },
+    { id: 'happ', name: 'Happ', url: 'https://play.google.com/store/apps/details?id=com.happproxy', recommended: true },
     { id: 'v2raytun', name: 'V2rayTun', url: 'https://play.google.com/store/apps/details?id=com.v2raytun.android', recommended: false },
   ],
   ios: [
-    { id: 'happ', name: 'Happ', url: 'https://apps.apple.com/app/happ-proxy-utility/id6504287215', recommended: true },
+    { id: 'happ', name: 'Happ', url: 'https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973', recommended: true },
     { id: 'v2raytun', name: 'V2rayTun', url: 'https://apps.apple.com/app/v2raytun/id6476628951', recommended: false },
   ],
   windows: [
-    { id: 'happ', name: 'Happ', url: 'https://github.com/niceboygithub/niceboygithub/releases', recommended: true },
-    { id: 'v2raytun', name: 'V2rayN', url: 'https://github.com/2dust/v2rayN/releases', recommended: false },
+    { id: 'happ', name: 'Happ', url: 'https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe', recommended: true },
+    { id: 'v2raytun', name: 'V2rayTun', url: 'https://v2raytun.com/', recommended: false },
   ],
   macos: [
-    { id: 'happ', name: 'Happ', url: 'https://apps.apple.com/app/happ-proxy-utility/id6504287215', recommended: true },
-    { id: 'v2raytun', name: 'V2rayTun', url: 'https://apps.apple.com/app/v2raytun/id6476628951', recommended: false },
+    { id: 'happ', name: 'Happ', url: 'https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973', recommended: true },
+    { id: 'v2raytun', name: 'V2rayTun', url: 'https://apps.apple.com/ru/app/v2raytun/id6476628951', recommended: false },
   ],
 };
 

@@ -275,13 +275,17 @@ function ReferralsTab() {
   return (
     <div className="space-y-6">
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="card-dark text-center">
           <div className="text-3xl font-bold text-white mb-1">{ref?.count || 0}</div>
           <div className="text-gray-400 text-sm">Приглашённых</div>
         </div>
         <div className="card-dark text-center">
-          <div className="text-3xl font-bold text-zoomer-green mb-1">+{(ref?.count || 0) * 7}</div>
+          <div className="text-3xl font-bold text-white mb-1">{ref?.paid_count || 0}</div>
+          <div className="text-gray-400 text-sm">Оплативших</div>
+        </div>
+        <div className="card-dark text-center">
+          <div className="text-3xl font-bold text-zoomer-green mb-1">+{(ref?.paid_count || 0) * 7}</div>
           <div className="text-gray-400 text-sm">Бонусных дней</div>
         </div>
       </div>
