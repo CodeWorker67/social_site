@@ -38,10 +38,10 @@ export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
 export const TARIFFS = [
   { id: '7',   label: '7 дней',   price: 99,   days: 7,   devices: 5, type: 'pro' },
-  { id: '30',  label: '30 дней',  price: 199,  days: 30,  devices: 5, type: 'pro' },
-  { id: '90',  label: '90 дней (выгода −10%)',  price: 539,  days: 90,  devices: 5, type: 'pro', popular: true },
-  { id: '180', label: '180 дней (выгода −15%)', price: 999,  days: 180, devices: 5, type: 'pro' },
-  { id: '365', label: '365 дней (выгода −30%)', price: 1699, days: 365, devices: 5, type: 'pro' },
+  { id: '30',  label: '30 дней',  price: 299,  days: 30,  devices: 5, type: 'pro' },
+  { id: '90',  label: '90 дней (выгода −16%)',  price: 749,  days: 90,  devices: 5, type: 'pro', popular: true },
+  { id: '180', label: '180 дней (выгода −25%)', price: 1349, days: 180, devices: 5, type: 'pro' },
+  { id: '365', label: '365 дней (выгода −33%)', price: 2399, days: 365, devices: 5, type: 'pro' },
 ];
 
 export const PAYMENT_METHODS = [
