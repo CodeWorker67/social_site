@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Check, Star, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ROUTES, TARIFFS, TELEGRAM } from '@utils/constants';
+import { ROUTES, TARIFFS } from '@utils/constants';
 import Button from '@components/ui/Button';
 
 const displayTariffs = TARIFFS.filter(t => t.type === 'pro' && !t.promo).slice(0, 3);
@@ -85,7 +85,7 @@ export default function PlansPreviewSection() {
               3 дня бесплатно
             </Button>
           </Link>
-          <p className="text-gray-500 text-sm mt-3">Без карты. Активация в Telegram-боте.</p>
+          <p className="text-gray-500 text-sm mt-3">Без карты. Активация в боте.</p>
         </motion.div>
       </div>
     </section>

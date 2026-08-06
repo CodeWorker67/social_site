@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Youtube, MessageSquare, Gamepad2, Send } from 'lucide-react';
+import { Video, MessageSquare, Gamepad2, Wifi } from 'lucide-react';
 
 const useCases = [
-  { icon: Youtube, title: 'YouTube без рекламы', desc: 'Смотри видео без ограничений скорости и без блокировок' },
-  { icon: MessageSquare, title: 'Discord', desc: 'Голосовые и видеочаты без лагов и отключений' },
+  { icon: Video, title: 'Видео и стримы', desc: 'Смотри и слушай на полной скорости, без обрывов' },
+  { icon: MessageSquare, title: 'Чаты и звонки', desc: 'Голосовые и видеочаты без лагов и отключений' },
   { icon: Gamepad2, title: 'Игры', desc: 'Низкий пинг на европейских серверах. Стабильное соединение' },
-  { icon: Send, title: 'Telegram', desc: 'Полный доступ без замедлений и сбоев' },
+  { icon: Wifi, title: 'Стабильный интернет', desc: 'Быстрое и надёжное соединение каждый день' },
 ];
 
 export default function TrustSection() {
@@ -19,10 +19,10 @@ export default function TrustSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Разблокируй <span className="text-gradient">всё</span>
+            Всё работает <span className="text-gradient">быстро</span>
           </h2>
           <p className="text-gray-400">
-            YouTube, Discord, Telegram, игры — всё работает быстро и стабильно.
+            Видео, чаты, игры — стабильно и без тормозов.
           </p>
         </motion.div>
 

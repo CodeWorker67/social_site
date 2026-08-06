@@ -25,6 +25,11 @@ export const TELEGRAM = {
   CHANNEL_URL: 'https://t.me/zoomerskydostup',
 };
 
+export const LEGAL = {
+  PRIVACY_URL: 'https://telegra.ph/Politika-konfidencialnosti-08-01-83',
+  TERMS_URL: 'https://telegra.ph/Polzovatelskoe-soglashenie-04-01-19',
+};
+
 export const PRO_SUBSCRIPTION_LABEL = 'Подписка PRO - соцсети';
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
@@ -53,7 +58,7 @@ export const FEATURES = [
   {
     icon: 'Zap',
     title: 'До 10 Гбит/с',
-    description: 'Серверы на быстрых каналах. YouTube, стримы, игры без тормозов.',
+    description: 'Серверы на быстрых каналах. Стримы, игры и работа без тормозов.',
   },
   {
     icon: 'Globe',
@@ -73,6 +78,6 @@ export const FEATURES = [
   {
     icon: 'Clock',
     title: '24/7 поддержка',
-    description: 'Telegram-бот и живая поддержка. Ответим быстро.',
+    description: 'Бот и живая поддержка. Ответим быстро.',
   },
 ];

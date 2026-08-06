@@ -48,7 +48,7 @@ export default function LoginPage() {
                 }`}
               >
                 <Send className="w-4 h-4" />
-                Telegram
+                Бот
               </button>
               <button
                 onClick={() => setAuthMethod('email')}
@@ -122,7 +122,7 @@ function TelegramAuth() {
         className="flex min-h-[56px] w-full flex-col items-center justify-center rounded-xl border border-zoomer-border bg-zoomer-dark/50 py-3 [&_iframe]:max-w-full"
       />
       <p className="text-center text-xs text-gray-500">
-        После «Войти как …» откроется Telegram, затем браузер вернёт вас на этот сайт — вход завершится
+        После «Войти как …» откроется бот, затем браузер вернёт вас на этот сайт — вход завершится
         автоматически (без всплывающего окна сайта).
       </p>
     </div>

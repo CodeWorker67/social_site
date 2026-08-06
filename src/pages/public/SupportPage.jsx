@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'Какие способы оплаты доступны?',
-    a: 'СБП, банковские карты РФ, криптовалюта (CryptoBot), Telegram Stars.',
+    a: 'СБП, банковские карты РФ, криптовалюта (CryptoBot), Stars.',
   },
   {
     q: 'VPN не подключается. Что делать?',
@@ -69,7 +69,7 @@ export default function SupportPage() {
               </div>
               <div>
                 <div className="text-white font-semibold">Поддержка</div>
-                <div className="text-gray-400 text-sm">Написать в Telegram</div>
+                <div className="text-gray-400 text-sm">Написать в поддержку</div>
               </div>
             </a>
             <a
@@ -82,7 +82,7 @@ export default function SupportPage() {
                 <Send className="w-6 h-6 text-zoomer-blue" />
               </div>
               <div>
-                <div className="text-white font-semibold">Telegram-бот</div>
+                <div className="text-white font-semibold">Бот</div>
                 <div className="text-gray-400 text-sm">Управление подпиской</div>
               </div>
             </a>

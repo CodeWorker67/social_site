@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Shield, Send, MessageCircle } from 'lucide-react';
-import { ROUTES, TELEGRAM, BRAND_NAME } from '@utils/constants';
+import { ROUTES, TELEGRAM, BRAND_NAME, LEGAL } from '@utils/constants';
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
               <span className="text-lg font-bold text-white">{BRAND_NAME}</span>
             </div>
             <p className="text-gray-400 text-sm">
-              Быстрый и безопасный VPN на базе VLESS Reality. Создан для свободного интернета.
+              Быстрый и безопасный VPN на базе VLESS Reality. Создан для стабильного интернета.
             </p>
           </div>
 
@@ -34,8 +34,26 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Документы</h3>
             <ul className="space-y-2">
-              <li><Link to={ROUTES.PRIVACY_POLICY} className="text-gray-400 hover:text-white text-sm transition-colors">Политика конфиденциальности</Link></li>
-              <li><Link to={ROUTES.TERMS} className="text-gray-400 hover:text-white text-sm transition-colors">Пользовательское соглашение</Link></li>
+              <li>
+                <a
+                  href={LEGAL.PRIVACY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                >
+                  Политика конфиденциальности
+                </a>
+              </li>
+              <li>
+                <a
+                  href={LEGAL.TERMS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                >
+                  Пользовательское соглашение
+                </a>
+              </li>
             </ul>
           </div>
 

@@ -29,7 +29,7 @@ export default function BotLoginPage() {
     (async () => {
       const result = await botLogin(token);
       if (result.success) {
-        toast.success('Вы вошли через Telegram!');
+        toast.success('Вы вошли через бот!');
         navigate(ROUTES.DASHBOARD, { replace: true });
       } else {
         lastHandledBotLoginSearch = '';

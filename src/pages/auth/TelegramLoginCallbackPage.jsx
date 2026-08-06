@@ -42,14 +42,14 @@ export default function TelegramLoginCallbackPage() {
   useEffect(() => {
     const qs = typeof window !== 'undefined' ? window.location.search : '';
     if (!qs) {
-      toast.error('Нет данных входа Telegram');
+      toast.error('Нет данных входа');
       navigate(ROUTES.LOGIN, { replace: true });
       return;
     }
 
     const body = buildTelegramAuthBody(searchParams);
     if (!body) {
-      toast.error('Неверные данные Telegram');
+      toast.error('Неверные данные входа');
       navigate(ROUTES.LOGIN, { replace: true });
       return;
     }
@@ -60,7 +60,7 @@ export default function TelegramLoginCallbackPage() {
     (async () => {
       const result = await telegramLogin(body);
       if (result.success) {
-        toast.success('Вы вошли через Telegram!');
+        toast.success('Вы вошли через бот!');
         navigate(ROUTES.DASHBOARD, { replace: true });
       } else {
         lastHandledTelegramCallbackSearch = '';
@@ -73,10 +73,10 @@ export default function TelegramLoginCallbackPage() {
   return (
     <>
       <Helmet>
-        <title>Вход через Telegram — {BRAND_NAME}</title>
+        <title>Вход через бот — {BRAND_NAME}</title>
       </Helmet>
       <div className="flex min-h-[50vh] items-center justify-center px-4">
-        <p className="text-sm text-gray-400">Завершаем вход через Telegram…</p>
+        <p className="text-sm text-gray-400">Завершаем вход через бот…</p>
       </div>
     </>
   );
