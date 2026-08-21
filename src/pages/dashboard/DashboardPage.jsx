@@ -115,15 +115,25 @@ function OverviewTab() {
 
   return (
     <div className="space-y-6">
-      {/* CTA — Trial or Setup */}
+      {/* CTA — Bot / Trial / Setup */}
+      <a
+        href={TELEGRAM.BOT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative w-full p-5 rounded-2xl bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon text-white font-semibold text-lg flex items-center justify-center hover:opacity-90 transition-opacity"
+      >
+        <Send className="absolute left-5 w-6 h-6" />
+        <span className="px-10">Перейти в Telegram бот</span>
+      </a>
+
       {!hasAnySub && (
         <button
           onClick={handleTrial}
           disabled={trialLoading}
-          className={`w-full p-5 rounded-2xl bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon text-white font-semibold text-lg flex items-center justify-center gap-3 hover:opacity-90 transition-opacity ${trialLoading ? 'opacity-50' : ''}`}
+          className={`relative w-full p-5 rounded-2xl bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon text-white font-semibold text-lg flex items-center justify-center hover:opacity-90 transition-opacity ${trialLoading ? 'opacity-50' : ''}`}
         >
-          <Zap className="w-6 h-6" />
-          {trialLoading ? 'Активируем...' : 'Активировать 3 дня бесплатно'}
+          <Zap className="absolute left-5 w-6 h-6" />
+          <span className="px-10">{trialLoading ? 'Активируем...' : 'Активировать 3 дня бесплатно'}</span>
         </button>
       )}
 

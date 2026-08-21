@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Shield, Mail, ArrowLeft } from 'lucide-react';
 import useAuthStore from '@stores/authStore';
 import { authApi } from '@services/api';
-import { ROUTES, GOOGLE_CLIENT_ID, BRAND_NAME } from '@utils/constants';
+import { ROUTES, GOOGLE_CLIENT_ID, BRAND_NAME, TELEGRAM } from '@utils/constants';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
 
@@ -74,6 +74,17 @@ export default function LoginPage() {
               <div className="flex-1 h-px bg-zoomer-border" />
             </div>
             <GoogleLoginButton />
+            <a
+              href={TELEGRAM.BOT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 w-full flex items-center justify-center gap-3 px-4 py-4 rounded-xl border border-zoomer-border bg-zoomer-card hover:border-gray-500 transition-all text-sm font-medium text-white"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#229ED9" aria-hidden="true">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+              </svg>
+              Перейти в Telegram бот
+            </a>
           </div>
         </motion.div>
       </section>
@@ -203,7 +214,6 @@ function EmailAuth() {
   const [mode, setMode] = useState('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [verifyCode, setVerifyCode] = useState('');
   const [resetCode, setResetCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -232,10 +242,6 @@ function EmailAuth() {
     e.preventDefault();
     if (password.length < 6) {
       toast.error('Пароль минимум 6 символов');
-      return;
-    }
-    if (password !== confirmPassword) {
-      toast.error('Пароли не совпадают');
       return;
     }
     const result = await emailRegister(email, password);
@@ -388,14 +394,6 @@ function EmailAuth() {
           className="w-full px-4 py-3 rounded-xl bg-zoomer-dark border border-zoomer-border text-white text-sm focus:border-zoomer-neon focus:outline-none transition-colors"
           placeholder="Минимум 6 символов" />
       </div>
-      {mode === 'register' && (
-        <div>
-          <label className="block text-sm text-gray-400 mb-1">Подтвердите пароль</label>
-          <input type="password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl bg-zoomer-dark border border-zoomer-border text-white text-sm focus:border-zoomer-neon focus:outline-none transition-colors"
-            placeholder="Повторите пароль" />
-        </div>
-      )}
       <Button type="submit" disabled={isLoading} className={`w-full text-sm ${isLoading ? 'opacity-50' : ''}`}>
         {isLoading ? 'Загрузка...' : mode === 'login' ? 'Войти' : 'Зарегистрироваться'}
       </Button>

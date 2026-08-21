@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Shield, Zap, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '@utils/constants';
+import { ROUTES, TELEGRAM } from '@utils/constants';
 import Button from '@components/ui/Button';
 
 export default function HeroSection() {
@@ -53,14 +53,22 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+            className="flex flex-col items-center justify-center gap-4 mb-16"
           >
-            <Link to={ROUTES.PRICING}>
-              <Button className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center gap-2">
-                Попробовать 3 дня бесплатно
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
+            <div className="inline-flex w-full max-w-md flex-col items-stretch gap-4 sm:w-auto">
+              <a href={TELEGRAM.BOT_URL} target="_blank" rel="noopener noreferrer" className="block">
+                <Button className="w-full text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center gap-2">
+                  Перейти в Telegram бот
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </a>
+              <Link to={ROUTES.PRICING} className="block">
+                <Button className="w-full text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center gap-2">
+                  Попробовать 3 дня бесплатно
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
             <Link to={ROUTES.PRICING}>
               <Button variant="secondary" className="text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4">
                 Тарифы от 99 руб
