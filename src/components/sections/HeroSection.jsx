@@ -62,6 +62,12 @@ export default function HeroSection() {
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </a>
+              <Link to={ROUTES.LOGIN} className="block">
+                <Button className="w-full text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center gap-2">
+                  Подключиться без Telegram
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
               <Link to={ROUTES.PRICING} className="block">
                 <Button className="w-full text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 flex items-center justify-center gap-2">
                   Попробовать 3 дня бесплатно

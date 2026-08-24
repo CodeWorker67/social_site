@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES, TARIFFS } from '@utils/constants';
 import Button from '@components/ui/Button';
 
-const displayTariffs = TARIFFS.filter(t => t.type === 'pro' && !t.promo).slice(0, 3);
+const displayTariffs = TARIFFS.filter(t => t.type === 'pro');
 
 export default function PlansPreviewSection() {
   return (
@@ -25,27 +25,32 @@ export default function PlansPreviewSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-10">
           {displayTariffs.map((tariff, index) => (
             <motion.div
               key={tariff.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.05 }}
               className={`relative card-dark text-center ${
                 tariff.popular ? 'border-zoomer-neon ring-1 ring-zoomer-neon/50' : ''
               }`}
             >
-              {tariff.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon rounded-full text-xs font-semibold text-white flex items-center gap-1">
-                  <Star className="w-3 h-3" /> Популярный
+              {(tariff.popular || tariff.badge) && (
+                <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold text-white flex items-center gap-1 ${
+                  tariff.promo
+                    ? 'bg-gradient-to-r from-orange-500 to-red-500'
+                    : 'bg-gradient-to-r from-zoomer-neon-dim to-zoomer-neon'
+                }`}>
+                  {tariff.popular && <Star className="w-3 h-3" />}
+                  {tariff.badge || 'Популярный'}
                 </div>
               )}
 
-              <div className="text-gray-400 text-sm mb-2">{tariff.label}</div>
-              <div className="text-4xl font-bold text-white mb-1">
-                {tariff.price} <span className="text-lg text-gray-400">руб</span>
+              <div className="text-gray-400 text-sm mb-2 mt-2">{tariff.label}</div>
+              <div className="text-3xl font-bold text-white mb-1">
+                {tariff.price} <span className="text-base text-gray-400">руб</span>
               </div>
               <div className="text-gray-500 text-xs mb-6">
                 ~{Math.round(tariff.price / tariff.days)} руб/день
