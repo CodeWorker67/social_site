@@ -80,7 +80,15 @@ function OverviewTab() {
   const [keys, setKeys] = useState(null);
   const [loading, setLoading] = useState(true);
   const [trialLoading, setTrialLoading] = useState(false);
+  const [copied, setCopied] = useState(null);
   const navigate = useNavigate();
+
+  const copyProUrl = (url) => {
+    navigator.clipboard.writeText(url);
+    setCopied('pro');
+    toast.success('Скопировано!');
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   useEffect(() => {
     Promise.all([
@@ -148,12 +156,10 @@ function OverviewTab() {
       )}
 
       {/* Subscription */}
-      <div className="max-w-md">
-        <div className="card-dark">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-zoomer-neon/10 flex items-center justify-center">
-              <Shield className="w-5 h-5 text-zoomer-neon" />
-            </div>
+      <div className="card-dark">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <Shield className="w-5 h-5 text-zoomer-neon" />
             <div>
               <div className="text-white font-semibold">{PRO_SUBSCRIPTION_LABEL}</div>
               <div className={`text-sm ${sub?.pro?.active ? 'text-zoomer-green' : 'text-red-400'}`}>
@@ -161,20 +167,48 @@ function OverviewTab() {
               </div>
             </div>
           </div>
-          {sub?.pro?.expires && (
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <Clock className="w-4 h-4" />
-              До: {sub.pro.expires}
-            </div>
-          )}
-          {!sub?.pro?.active && (
-            <div className="mt-4">
-              <Link to={ROUTES.PRICING}>
-                <Button className="w-full text-sm">Купить подписку</Button>
-              </Link>
+          {sub?.pro?.active && keys?.pro_url && (
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => copyProUrl(keys.pro_url)}
+                className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                {copied === 'pro' ? (
+                  <Check className="w-4 h-4 text-zoomer-green" />
+                ) : (
+                  <Copy className="w-4 h-4 text-gray-400" />
+                )}
+              </button>
+              <a
+                href={keys.pro_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4 text-gray-400" />
+              </a>
             </div>
           )}
         </div>
+        {sub?.pro?.active && keys?.pro_url && (
+          <div className="p-3 bg-zoomer-dark rounded-lg mb-3">
+            <code className="text-xs text-gray-400 break-all">{keys.pro_url}</code>
+          </div>
+        )}
+        {sub?.pro?.expires && (
+          <div className="flex items-center gap-2 text-gray-400 text-sm">
+            <Clock className="w-4 h-4" />
+            До: {sub.pro.expires}
+          </div>
+        )}
+        {!sub?.pro?.active && (
+          <div className="mt-4">
+            <Link to={ROUTES.PRICING}>
+              <Button className="w-full text-sm">Купить подписку</Button>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Quick actions */}
