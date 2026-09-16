@@ -1,6 +1,21 @@
 import { create } from 'zustand';
 import { authApi, AUTH_TOKEN_STORAGE_KEY } from '@services/api';
 import { clearStoredStamp, getStoredStamp } from '@utils/stamp';
+import { clearStoredPartner, getStoredPartner } from '@utils/partner';
+
+function authAttributionPayload() {
+  const stamp = getStoredStamp();
+  const partner = getStoredPartner();
+  return {
+    ...(stamp && { stamp }),
+    ...(partner && { partner }),
+  };
+}
+
+function clearAuthAttribution() {
+  clearStoredStamp();
+  clearStoredPartner();
+}
 
 const useAuthStore = create((set, get) => ({
   user: null,
@@ -36,13 +51,17 @@ const useAuthStore = create((set, get) => ({
   botLogin: async (oneTimeToken) => {
     set({ isLoading: true });
     try {
-      const response = await authApi.botLogin({ token: oneTimeToken });
+      const response = await authApi.botLogin({
+        token: oneTimeToken,
+        ...authAttributionPayload(),
+      });
       const { data } = response;
       const jwt =
         data.token ||
         response.headers['x-auth-token'] ||
         response.headers['X-Auth-Token'];
       get()._setAuth(data.user, jwt);
+      clearAuthAttribution();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
@@ -60,8 +79,12 @@ const useAuthStore = create((set, get) => ({
   telegramLogin: async (telegramData) => {
     set({ isLoading: true });
     try {
-      const { data } = await authApi.telegramLogin(telegramData);
+      const { data } = await authApi.telegramLogin({
+        ...telegramData,
+        ...authAttributionPayload(),
+      });
       get()._setAuth(data.user, data.token);
+      clearAuthAttribution();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
@@ -83,17 +106,16 @@ const useAuthStore = create((set, get) => ({
   emailRegister: async (email, password) => {
     set({ isLoading: true });
     try {
-      const stamp = getStoredStamp();
       const { data } = await authApi.register({
         email,
         password,
-        ...(stamp && { stamp }),
+        ...authAttributionPayload(),
       });
       set({ isLoading: false });
       if (data.requires_verification) {
         return { success: true, requiresVerification: true, email: data.email };
       }
-      clearStoredStamp();
+      clearAuthAttribution();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
@@ -122,7 +144,7 @@ const useAuthStore = create((set, get) => ({
     try {
       const { data } = await authApi.verifyEmail({ email, code });
       get()._setAuth(data.user, data.token);
-      clearStoredStamp();
+      clearAuthAttribution();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
@@ -133,13 +155,12 @@ const useAuthStore = create((set, get) => ({
   googleLogin: async (credential) => {
     set({ isLoading: true });
     try {
-      const stamp = getStoredStamp();
       const { data } = await authApi.googleLogin({
         credential,
-        ...(stamp && { stamp }),
+        ...authAttributionPayload(),
       });
       get()._setAuth(data.user, data.token);
-      clearStoredStamp();
+      clearAuthAttribution();
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
