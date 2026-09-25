@@ -252,8 +252,8 @@ function OverviewTab() {
       )}
 
       {wlUnderLimit && (
-        <div className="rounded-2xl border border-zoomer-green/40 bg-emerald-950/35 p-5">
-          <div className="text-sm text-emerald-100 leading-relaxed space-y-1">
+        <div className="card-dark">
+          <div className="text-sm text-gray-300 leading-relaxed space-y-1">
             <p>
               Сервер &quot;{MOBILE_NODE_DISPLAY_NAME}&quot;: активен
             </p>
@@ -263,12 +263,12 @@ function OverviewTab() {
                 ? wlTraffic.remaining_gb.toFixed(2)
                 : '—'}
             </p>
-            <p className="italic text-emerald-100/90">
+            <p className="italic text-gray-400">
               Докупите трафик заранее для надёжного доступа к мобильному интернету
             </p>
           </div>
           <Link to={ROUTES.TRAFFIC_BUY} className="block mt-6">
-            <Button className="w-full text-sm bg-zoomer-green hover:bg-emerald-500 border-emerald-500/50">
+            <Button className="w-full text-sm">
               Купить трафик
             </Button>
           </Link>
