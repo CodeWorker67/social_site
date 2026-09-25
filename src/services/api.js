@@ -67,12 +67,14 @@ export const userApi = {
   referrals: () => api.get('/user/referrals'),
   profile: () => api.get('/user/profile'),
   account: () => api.get('/user/account'),
+  wlTraffic: () => api.get('/user/wl-traffic'),
   changePassword: (data) => api.post('/user/change-password', data),
 };
 
 // Payments
 export const paymentApi = {
   createPayment: (data) => api.post('/payments/create', data),
+  createTrafficPayment: (data) => api.post('/payments/create-traffic', data),
   getStatus: (id) => api.get(`/payments/${id}/status`),
 };
 
@@ -84,6 +86,7 @@ export const trialApi = {
 // Config
 export const configApi = {
   tariffs: () => api.get('/config/tariffs'),
+  trafficPackages: () => api.get('/config/traffic-packages'),
 };
 
 // Gifts

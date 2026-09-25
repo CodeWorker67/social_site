@@ -15,6 +15,7 @@ import { captureStartPartnerFromUrl } from '@utils/partner';
 import HomePage from '@pages/public/HomePage';
 
 const PricingPage = lazy(() => import('@pages/public/PricingPage'));
+const TrafficBuyPage = lazy(() => import('@pages/public/TrafficBuyPage'));
 const SetupPage = lazy(() => import('@pages/public/SetupPage'));
 const SupportPage = lazy(() => import('@pages/public/SupportPage'));
 const LoginPage = lazy(() => import('@pages/auth/LoginPage'));
@@ -54,6 +55,7 @@ function AppShell() {
             <Route path={ROUTES.GIFT} element={<GiftPage />} />
             <Route path={ROUTES.HOME} element={<HomePage />} />
             <Route path={ROUTES.PRICING} element={<PricingPage />} />
+            <Route path={ROUTES.TRAFFIC_BUY} element={<TrafficBuyPage />} />
             <Route path={ROUTES.SETUP} element={<SetupPage />} />
             <Route path={ROUTES.SUPPORT} element={<SupportPage />} />
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />

@@ -6,7 +6,13 @@ import { User, Key, Users, LogOut, Shield, Clock, Copy, Check, ExternalLink, Lin
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '@stores/authStore';
 import { userApi, trialApi, authApi } from '@services/api';
-import { TELEGRAM, ROUTES, BRAND_NAME, PRO_SUBSCRIPTION_LABEL } from '@utils/constants';
+import {
+  TELEGRAM,
+  ROUTES,
+  BRAND_NAME,
+  PRO_SUBSCRIPTION_LABEL,
+  MOBILE_NODE_DISPLAY_NAME,
+} from '@utils/constants';
 import Button from '@components/ui/Button';
 import toast from 'react-hot-toast';
 
@@ -78,6 +84,7 @@ export default function DashboardPage() {
 function OverviewTab() {
   const [sub, setSub] = useState(null);
   const [keys, setKeys] = useState(null);
+  const [wlTraffic, setWlTraffic] = useState(null);
   const [loading, setLoading] = useState(true);
   const [trialLoading, setTrialLoading] = useState(false);
   const [copied, setCopied] = useState(null);
@@ -94,6 +101,7 @@ function OverviewTab() {
     Promise.all([
       userApi.subscription().then(({ data }) => setSub(data)).catch(() => null),
       userApi.keys().then(({ data }) => setKeys(data)).catch(() => null),
+      userApi.wlTraffic().then(({ data }) => setWlTraffic(data)).catch(() => null),
     ]).finally(() => setLoading(false));
   }, []);
 
@@ -118,6 +126,12 @@ function OverviewTab() {
 
   const hasAnySub = sub?.pro?.active;
   const hasAnyKey = keys?.pro_url;
+  const proActive = Boolean(sub?.pro?.active);
+  const showWlUsage = proActive && wlTraffic && (wlTraffic.limit_gb > 0 || wlTraffic.used_gb > 0);
+  const wlLimitExhausted =
+    wlTraffic?.limit_exhausted ||
+    (wlTraffic && wlTraffic.limit_gb > 0 && wlTraffic.used_gb >= wlTraffic.limit_gb);
+  const wlUnderLimit = proActive && showWlUsage && !wlLimitExhausted;
 
   if (loading) return <LoadingSkeleton />;
 
@@ -202,6 +216,14 @@ function OverviewTab() {
             До: {sub.pro.expires}
           </div>
         )}
+        {showWlUsage && (
+          <div className="flex items-center gap-2 text-gray-400 text-sm mt-2">
+            <span className="text-gray-500 shrink-0">{MOBILE_NODE_DISPLAY_NAME}:</span>
+            <span>
+              {wlTraffic.used_gb.toFixed(2)} / {wlTraffic.limit_gb.toFixed(2)} GB
+            </span>
+          </div>
+        )}
         {!sub?.pro?.active && (
           <div className="mt-4">
             <Link to={ROUTES.PRICING}>
@@ -210,6 +232,48 @@ function OverviewTab() {
           </div>
         )}
       </div>
+
+      {proActive && wlLimitExhausted && (
+        <div className="rounded-2xl border-2 border-red-500 bg-gradient-to-br from-red-600/35 via-red-800/55 to-red-950/80 p-5 shadow-lg shadow-red-600/30 ring-1 ring-red-400/40">
+          <div className="text-sm text-white leading-relaxed space-y-1">
+            <p className="font-medium">
+              Сервер &quot;{MOBILE_NODE_DISPLAY_NAME}&quot;: убран из списка серверов
+            </p>
+            <p className="italic text-red-50">
+              Для подключения к серверу необходимо пополнить трафик.
+            </p>
+          </div>
+          <Link to={ROUTES.TRAFFIC_BUY} className="block mt-6">
+            <Button className="w-full text-sm bg-red-500 hover:bg-red-400 border-red-300/60 shadow-md shadow-red-900/40">
+              Купить трафик
+            </Button>
+          </Link>
+        </div>
+      )}
+
+      {wlUnderLimit && (
+        <div className="rounded-2xl border border-zoomer-green/40 bg-emerald-950/35 p-5">
+          <div className="text-sm text-emerald-100 leading-relaxed space-y-1">
+            <p>
+              Сервер &quot;{MOBILE_NODE_DISPLAY_NAME}&quot;: активен
+            </p>
+            <p>
+              Остаток трафика:{' '}
+              {typeof wlTraffic.remaining_gb === 'number'
+                ? wlTraffic.remaining_gb.toFixed(2)
+                : '—'}
+            </p>
+            <p className="italic text-emerald-100/90">
+              Докупите трафик заранее для надёжного доступа к мобильному интернету
+            </p>
+          </div>
+          <Link to={ROUTES.TRAFFIC_BUY} className="block mt-6">
+            <Button className="w-full text-sm bg-zoomer-green hover:bg-emerald-500 border-emerald-500/50">
+              Купить трафик
+            </Button>
+          </Link>
+        </div>
+      )}
 
       {/* Quick actions */}
       <div className="card-dark">

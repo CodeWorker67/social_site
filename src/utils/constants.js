@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: '/',
   PRICING: '/pricing',
+  TRAFFIC_BUY: '/traffic_buy',
   SETUP: '/setup',
   SUPPORT: '/support',
   LOGIN: '/login',
@@ -32,6 +33,9 @@ export const LEGAL = {
 
 export const PRO_SUBSCRIPTION_LABEL = 'Подписка PRO - соцсети';
 
+/** Имя доп. сервера только в UI кабинета (не использовать в meta и SEO). */
+export const MOBILE_NODE_DISPLAY_NAME = 'Антиглушилка';
+
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 export const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
@@ -47,6 +51,16 @@ export const TARIFFS = [
 export const PAYMENT_METHODS = [
   { id: 'sbp',    label: 'СБП',        icon: 'Zap' },
   { id: 'card',   label: 'Карта РФ',   icon: 'CreditCard' },
+];
+
+/** Пакеты доп. трафика (GB → ₽), от большего к меньшему — как в боте */
+export const TRAFFIC_PACKAGES = [
+  { gb: '500', price: 1249 },
+  { gb: '250', price: 629 },
+  { gb: '100', price: 259 },
+  { gb: '50', price: 149 },
+  { gb: '20', price: 79 },
+  { gb: '10', price: 50 },
 ];
 
 export const FEATURES = [
